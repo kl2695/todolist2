@@ -5,7 +5,10 @@ import {receiveTodo, receiveTodos, fetchTodos} from './frontend/actions/todo_act
 import App from './frontend/components/app.jsx';
 import Root from './frontend/components/root.jsx';
 import {allTodos} from './frontend/reducers/selectors.js';
+import ApiUtil from './frontend/util/todo_api_util.js';
 
+
+const util = new ApiUtil();
 document.addEventListener("DOMContentLoaded", function(){
   const store = configureStore();
   window.receiveTodo = receiveTodo;
@@ -13,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
   window.store = store;
   window.allTodos = allTodos;
   window.fetchTodos = fetchTodos;
+  window.createTodo = util.createTodo;
   const rootEl = document.getElementById("content");
   ReactDOM.render(<Root store = {store}/>, rootEl);
 });

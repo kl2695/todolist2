@@ -1,4 +1,4 @@
-
+require 'byebug'
 class Api::TodosController < Api::ApiController
 
   def show
@@ -7,6 +7,7 @@ class Api::TodosController < Api::ApiController
 
   def create
     @todo = Todo.new(todo_params)
+    @todo.done = false;
     if @todo.save
       render json: @todo
     else
@@ -41,6 +42,6 @@ class Api::TodosController < Api::ApiController
   private
 
   def todo_params
-    parasm.require(:todo).permit(:title,:body,:done)
+    params.require(:todo).permit(:title,:body,:done, :id)
   end
 end

@@ -1,8 +1,10 @@
-import APIUtil from '../util/todo_api_util.js';
+import ApiUtil from '../util/todo_api_util.js';
 export const RECEIVE_TODOS = 'RECEIVE_TODOS';
 export const RECEIVE_TODO = 'RECEIVE_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 
+
+const util = new ApiUtil();
 
 export const receiveTodo = (todo) => {
 
@@ -24,7 +26,14 @@ export const removeTodo = (todo) => ({
 
 export const fetchTodos = function(){
   return function(dispatch){
-    return APIUtil().then((todos) => dispatch(receiveTodos(todos)));
+    console.log(util.fetchTodos);
+    return util.fetchTodos().then((todos) => dispatch(receiveTodos(todos)));
+  };
+};
+
+export const createTodo = function(todo){
+  return function(dispatch){
+    return util.createTodo(todo).then((todo2) => dispatch(receiveTodo(todo2)));
   };
 };
 
