@@ -14,7 +14,7 @@ class todoList extends React.Component{
 
 
   cb(el){
-    return (<TodoListItem todo={el} removeTodo={this.props.removeTodo}/>);
+    return (<TodoListItem todo={el} deleteTodo={this.props.deleteTodo} updateTodo={this.props.updateTodo}/> );
   }
 
   componentDidMount(){

@@ -20,6 +20,25 @@ class ApiUtil {
     dataType: "JSON"
   });
   }
+
+  deleteTodo(todo){
+    return $.ajax({
+      method: 'DELETE',
+      url: `http://localhost:3000/api/todos/${todo.id}`,
+      dataType: "JSON"
+    });
+  }
+
+  updateTodo(todo){
+    todo.done = !todo.done;
+    console.log(todo.done);
+    return $.ajax({
+      method: 'PATCH',
+      url: `http://localhost:3000/api/todos/${todo.id}`,
+      data: {todo: todo},
+      dataType: "JSON"
+    });
+  }
 }
 
 export default ApiUtil;

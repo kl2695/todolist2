@@ -4,20 +4,24 @@ import React from 'react';
 class TodoListItem extends React.Component{
   constructor(props){
     super(props);
-    this.todo = this.props.todo;
-    this.removeTodo = this.props.removeTodo;
-
   }
 
   render(){
+    const todo = this.props.todo;
+    const status = todo.done.toString();
     return (
-      <li>{this.props.todo.title} <button onClick={this.callback(this.props.todo)}>Remove</button></li>
+
+      <li>{todo.title}<button onClick={this.onClickHandler(this.props.updateTodo,todo)}>{status}</button>
+        <button onClick={this.onClickHandler(this.props.deleteTodo,todo)}>Remove</button></li>
     );
   }
 
-  callback(todo){
-    return () => this.removeTodo(todo);
+  onClickHandler(callback,todo){
+    return ()=> (
+      callback(todo)
+    );
   }
+
 }
 
 export default TodoListItem;
