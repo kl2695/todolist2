@@ -5,7 +5,6 @@ import TodoForm from "./todo_form.jsx";
 class todoList extends React.Component{
   constructor(props){
     super(props);
-    this.props = props;
 
   }
 
@@ -26,7 +25,7 @@ class todoList extends React.Component{
   render() {
     return (
     <div>
-      <TodoForm createTodo = {this.props.createTodo} />
+      <TodoForm createTodo={this.props.createTodo} errors={this.props.errors} clearErrors={this.props.clearErrors}/>
 
       <ul>
         {this.todos()}

@@ -2,6 +2,7 @@ import ApiUtil from '../util/todo_api_util.js';
 export const RECEIVE_TODOS = 'RECEIVE_TODOS';
 export const RECEIVE_TODO = 'RECEIVE_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
+import {receiveErrors} from './error_actions';
 
 
 const util = new ApiUtil();
@@ -33,7 +34,9 @@ export const fetchTodos = function(){
 
 export const createTodo = function(todo){
   return function(dispatch){
-    return util.createTodo(todo).then((todo2) => dispatch(receiveTodo(todo2)));
+    return util.createTodo(todo).then(
+      (todo2) => dispatch(receiveTodo(todo2)),
+      (err) => dispatch(receiveErrors(err.responseJSON)));
   };
 };
 

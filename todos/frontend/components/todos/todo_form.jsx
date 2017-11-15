@@ -22,7 +22,10 @@ class TodoForm extends React.Component{
     let body = document.getElementById('body').value;
     let id = document.getElementById('id').value;
     this.props.createTodo({id: id, title: title, body: body}).then(
-      () => this.setState({title:'', body:''})
+      () => {
+        this.setState({title:'', body:''});
+        this.props.clearErrors();
+      }
     );
   }
 
@@ -37,6 +40,8 @@ class TodoForm extends React.Component{
   render(){
     return(
       <div>
+        {this.props.errors}
+
         <form onSubmit={this.handleSubmit}>
           <label>Title
             <input id="title"type="text"onChange={this.handleChange} value={this.state.title}/>
